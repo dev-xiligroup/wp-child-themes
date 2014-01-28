@@ -1,0 +1,357 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: theme: twentyfourteen\n"
+"Report-Msgid-Bugs-To: contact@xiligroup.com\n"
+"POT-Creation-Date: 2014-01-12T14:07:29+00:00\n"
+"PO-Revision-Date: 2014-01-12T14:07:29+00:00\n"
+"Last-Translator: Michel <team@xiligroup.org>\n"
+"Language-Team: xili-dictionary WP plugin and  <team@xiligroup.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1\n"
+"X-Poedit-Language: fr_FR\n"
+"X-Poedit-Country: fr_FR\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. [local] name from category with slug news
+msgid "News"
+msgstr "Actus"
+
+#. [local] desc from category with slug news
+msgid "The latest post about xili-language trilogy"
+msgstr "Le dernier article sur la trilogie xili-language"
+
+#. [local] name from category with slug uncategorized
+msgid "Uncategorized"
+msgstr "Non classé"
+
+#. [local] bloginfo - blogname
+msgid "2014-xili"
+msgstr "2014 xili"
+
+#. [local] bloginfo - description
+msgid "Just another WordPress multilingual website"
+msgstr "un site internet multilingue avec WordPress et xili-language"
+
+#. [local] bloginfo - time_format
+msgid "g:i a"
+msgstr "H:i"
+
+#. [local] bloginfo - date_format
+msgid "F j, Y"
+msgstr "j M Y"
+
+#. [local] comment_form_labels name
+msgid "Name"
+msgstr "Nom"
+
+#. [local] comment_form_labels email
+msgid "Email"
+msgstr ""
+
+#. [local] comment_form_labels website
+msgid "Website"
+msgstr "Site Internet"
+
+#. [local] comment_form_labels comment
+msgctxt "noun"
+msgid "Comment"
+msgstr "Commentaire"
+
+#. [local] comment_form_labels youmustbe
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr "Vous devez être <a href=\"%s\">connecté</a> pour ajouter un commentaire."
+
+#. [local] comment_form_labels loggedinas
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Log out of this account\">Log out?</a>"
+msgstr "Connecté comme <a href=\"%1$s\">%2$s</a>. <a href=\"%3$s\" title=\"Se déconnecter\">Se déconnecter ?</a>"
+
+#. [local] comment_form_labels emailnotpublished
+msgid "Your email address will not be published."
+msgstr "L'adresse courriel ne sera pas publiée."
+
+#. [local] comment_form_labels requiredmarked
+msgid " Required fields are marked <span class=\"required\">*</span>"
+msgstr "Champ requis avec une <span class=\"required\">*</span>"
+
+#. [local] comment_form_labels youmayuse
+msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes:"
+msgstr "Vous pouvez utiliser les tags <abbr title=\"HyperText Markup Language\">HTML</abbr> et leurs attributs :"
+
+#. [local] comment_form_labels leavereply
+msgid "Leave a Reply"
+msgstr "Laisser un commentaire"
+
+#. [local] comment_form_labels replyto
+msgid "Leave a Reply to %s"
+msgstr "Faire une réponse à %s"
+
+#. [local] comment_form_labels cancelreply
+msgid "Cancel reply"
+msgstr "Annuler"
+
+#. [local] comment_form_labels postcomment
+msgid "Post Comment"
+msgstr "Commenter"
+
+#. [local] language with ISO en_US ctxt=searchform
+msgid "english"
+msgstr ""
+
+#. [local] language with ISO fr_FR ctxt=searchform
+msgid "french"
+msgstr ""
+
+#. [local] language list title post_selected
+msgid "Posts selected in %s"
+msgstr "Articles en %s"
+
+#. [local] language list title current_post
+msgid "Current post in %s"
+msgstr "Cet article en %s"
+
+#. [local] language list title latest_posts
+msgid "Latest posts in %s"
+msgstr "Articles récents en %s"
+
+#. [local] language list title view_all_posts
+msgid "View all posts in %s"
+msgstr "Voir tous les articles en %s"
+
+#. [local] wp_locale Sunday
+msgid "Sunday"
+msgstr "Dimanche"
+
+#. [local] wp_locale Monday
+msgid "Monday"
+msgstr "Lundi"
+
+#. [local] wp_locale Tuesday
+msgid "Tuesday"
+msgstr "Mardi"
+
+#. [local] wp_locale Wednesday
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#. [local] wp_locale Thursday
+msgid "Thursday"
+msgstr "Jeudi"
+
+#. [local] wp_locale Friday
+msgid "Friday"
+msgstr "Vendredi"
+
+#. [local] wp_locale Saturday
+msgid "Saturday"
+msgstr "Samedi"
+
+#. [local] wp_locale S_Sunday_initial
+msgid "S_Sunday_initial"
+msgstr "D"
+
+#. [local] wp_locale M_Monday_initial
+msgid "M_Monday_initial"
+msgstr "L"
+
+#. [local] wp_locale T_Tuesday_initial
+msgid "T_Tuesday_initial"
+msgstr "Ma"
+
+#. [local] wp_locale W_Wednesday_initial
+msgid "W_Wednesday_initial"
+msgstr "Me"
+
+#. [local] wp_locale T_Thursday_initial
+msgid "T_Thursday_initial"
+msgstr "J"
+
+#. [local] wp_locale F_Friday_initial
+msgid "F_Friday_initial"
+msgstr "V"
+
+#. [local] wp_locale S_Saturday_initial
+msgid "S_Saturday_initial"
+msgstr "S"
+
+#. [local] wp_locale Sun
+msgid "Sun"
+msgstr "dim"
+
+#. [local] wp_locale Mon
+msgid "Mon"
+msgstr "lun"
+
+#. [local] wp_locale Tue
+msgid "Tue"
+msgstr "mar"
+
+#. [local] wp_locale Wed
+msgid "Wed"
+msgstr "mer"
+
+#. [local] wp_locale Thu
+msgid "Thu"
+msgstr "jeu"
+
+#. [local] wp_locale Fri
+msgid "Fri"
+msgstr "ven"
+
+#. [local] wp_locale Sat
+msgid "Sat"
+msgstr "sam"
+
+#. [local] wp_locale January
+msgid "January"
+msgstr "janvier"
+
+#. [local] wp_locale February
+msgid "February"
+msgstr "février"
+
+#. [local] wp_locale March
+msgid "March"
+msgstr "mars"
+
+#. [local] wp_locale April
+msgid "April"
+msgstr "avril"
+
+#. [local] wp_locale May
+msgid "May"
+msgstr "mai"
+
+#. [local] wp_locale June
+msgid "June"
+msgstr "juin"
+
+#. [local] wp_locale July
+msgid "July"
+msgstr "juillet"
+
+#. [local] wp_locale August
+msgid "August"
+msgstr "août"
+
+#. [local] wp_locale September
+msgid "September"
+msgstr "septembre"
+
+#. [local] wp_locale October
+msgid "October"
+msgstr "octobre"
+
+#. [local] wp_locale November
+msgid "November"
+msgstr "novembre"
+
+#. [local] wp_locale December
+msgid "December"
+msgstr "décembre"
+
+#. [local] wp_locale Jan_January_abbreviation
+msgid "Jan_January_abbreviation"
+msgstr "jan"
+
+#. [local] wp_locale Feb_February_abbreviation
+msgid "Feb_February_abbreviation"
+msgstr "fév"
+
+#. [local] wp_locale Mar_March_abbreviation
+msgid "Mar_March_abbreviation"
+msgstr "mar"
+
+#. [local] wp_locale Apr_April_abbreviation
+msgid "Apr_April_abbreviation"
+msgstr "avr"
+
+#. [local] wp_locale May_May_abbreviation
+msgid "May_May_abbreviation"
+msgstr "mai"
+
+#. [local] wp_locale Jun_June_abbreviation
+msgid "Jun_June_abbreviation"
+msgstr "juin"
+
+#. [local] wp_locale Jul_July_abbreviation
+msgid "Jul_July_abbreviation"
+msgstr "juil"
+
+#. [local] wp_locale Aug_August_abbreviation
+msgid "Aug_August_abbreviation"
+msgstr "août"
+
+#. [local] wp_locale Sep_September_abbreviation
+msgid "Sep_September_abbreviation"
+msgstr "sept"
+
+#. [local] wp_locale Oct_October_abbreviation
+msgid "Oct_October_abbreviation"
+msgstr "oct"
+
+#. [local] wp_locale Nov_November_abbreviation
+msgid "Nov_November_abbreviation"
+msgstr "nov"
+
+#. [local] wp_locale Dec_December_abbreviation
+msgid "Dec_December_abbreviation"
+msgstr "déc"
+
+#. [local] wp_locale am
+msgid "am"
+msgstr " "
+
+#. [local] wp_locale pm
+msgid "pm"
+msgstr " "
+
+#. [local] wp_locale number_format_thousands_sep
+msgid "number_format_thousands_sep"
+msgstr " &nbsp;"
+
+#. [local] wp_locale number_format_decimal_point
+msgid "number_format_decimal_point"
+msgstr ",&nbsp;"
+
+#. [local] wp_locale text_direction
+msgctxt "text direction"
+msgid "text_direction"
+msgstr "ltr"
+
+#. [local]
+msgid "Recent posts"
+msgstr "Articles récents"
+
+#. [local]
+msgid "Recent comments"
+msgstr "Commentaires récents"
+
+#. [local] 
+msgid "Reply"
+msgstr "Répondre"
+
+#. [local] 
+msgid "Ephemera"
+msgstr "éphémère"
+
+#. [local] name from category with slug how-to
+msgid "How to"
+msgstr "Mode d'emploi"
+
+#. [local] desc from category with slug how-to
+msgid "How to set and use a multilingual child theme."
+msgstr "Comment installer et se servir d'un thème enfant multilingue."
+
+#. [local] 
+msgid "Aside"
+msgstr "En passant"
+
+#. [local] 
+msgid "Bookmarks"
+msgstr "Liens"
+
+#. [local] 
+msgid "Multilingual child theme of Twenty Fourteen by %s"
+msgstr "Thème enfant de Twenty Fourteen par %s"

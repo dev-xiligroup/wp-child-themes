@@ -1,0 +1,25 @@
+/*
+Theme Name: Twenty Thirteen xili
+Theme URI: http://2013.extend.xiligroup.org
+Author: Dev.xiligroup team
+Author URI: http://dev.xiligroup.com/
+Description: Multilingual child theme of Twenty Thirteen - Need xili-language version 2.9.11+
+Version: 1.1.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: multilingual, bilingual, black, brown, orange, tan, white, light, one-column, two-columns, right-sidebar, flexible-width, custom-header, custom-menu, editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, translation-ready, multilingual, xili-language, i18n, l10n
+Text Domain: twentythirteen
+Template: twentythirteen
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+@import url('../twentythirteen/style.css'); /* the most important line of the style.css of a child from his parent twentythirteen */
+
+
+.site-title,
+.site-description {
+ color:#fffff0; // same in functions.php
+}
+
+.xili-s-radio { font-size:80%; }
