@@ -10,7 +10,7 @@ The twentyfourteen-xili is visible at http://2014.extend.xiligroup.org
 
 The twentythirteen-xili is visible at http://2013.extend.xiligroup.org
 
-*Prerequistes* : xili-language plugin must be activated. 
+*Prerequisites* : xili-language plugin must be activated. 
 The plugin is available here : http://wordpress.org/plugins/xili-language/
 
 2014-01-28
