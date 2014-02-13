@@ -31,7 +31,7 @@ function xiliml_adjacent_where_filter( $where, $in_same_cat, $excluded_categorie
 }
 
 // other conditions can limit filtering
-if ( class_exists( 'xili_language' ) && && is_xili_adjacent_filterable() ) {
+if ( class_exists( 'xili_language' ) && is_xili_adjacent_filterable() ) {
 	
 	add_filter( 'get_next_post_join', 'xiliml_adjacent_join_filter', 10, 3);
 	add_filter( 'get_previous_post_join', 'xiliml_adjacent_join_filter', 10, 3);
