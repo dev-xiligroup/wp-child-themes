@@ -20,7 +20,12 @@
 <!--<![endif]-->
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
-	<meta name="viewport" content="width=device-width" />
+<?php global $is_safari;
+if ( $is_safari && stripos($_SERVER['HTTP_USER_AGENT'], 'iPad') !== false) {
+	?><meta name="viewport" content="width=1024" /><?php
+} else {
+	?><meta name="viewport" content="width=device-width" /><?php
+}?>
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
