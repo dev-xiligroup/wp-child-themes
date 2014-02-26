@@ -19,4 +19,4 @@ After installation or updating, it is fully recommanded to refresh permalinks.
 
 Before updating don't forgot to keep a backup of the languages files (.mo)
 
-2014-02-16
+2014-02-26
