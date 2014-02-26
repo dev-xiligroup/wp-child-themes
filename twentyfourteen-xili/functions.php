@@ -3,8 +3,9 @@
 // dev.xiligroup.com - msc - 2013-11-02 - first test with 2014 0.1
 // 1.0.1 - 2014-01-20 - add is_xili_adjacent_filterable (reserved future uses and in class embedding)
 // 1.0.2 - 2014-02-09 - adapted for new permalinks class of XL 2.10.0
+// 1.0.4 - 2014-02-26 - add category, updated featured
 
-define( 'TWENTYFOURTEEN_XILI_VER', '1.0.2'); // as parent style.css
+define( 'TWENTYFOURTEEN_XILI_VER', '1.0.4'); // as parent style.css
 
 // main initialisation functions and version testing and message
 
