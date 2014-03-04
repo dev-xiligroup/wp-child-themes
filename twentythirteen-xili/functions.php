@@ -11,8 +11,9 @@
 // 1.1.3 - 2014-01-08 - fixes wp_title issue with new filter twentythirteen_xili_wp_title
 // 1.1.4 - 2014-01-19 - fixes require_once of multilingual-functions.php (thanks to Herold) - add is_xili_adjacent_filterable (reserved future uses and in class embedding)
 // 1.1.5 - 2014-02-09 - Need XL 2.10.0+ - Adaptated for new class of permalinks
+// 1.1.6 - 2014-03-04 - Add searchform.php
 
-define( 'TWENTYTHIRTEEN_XILI_VER', '1.1.5'); // as parent style.css
+define( 'TWENTYTHIRTEEN_XILI_VER', '1.1.6'); // as parent style.css
 
 // main initialisation functions
 
