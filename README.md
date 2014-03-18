@@ -6,7 +6,7 @@ Child multilingual themes for WordPress embedded themes
 
 This folder contains sources of multilingual child themes of embedded themes of WordPress install.
 
-The twentyfourteen-xili (v. 1.0.5) is visible at http://2014.extend.xiligroup.org
+The twentyfourteen-xili (v. 1.0.6) is visible at http://2014.extend.xiligroup.org
 
 The twentythirteen-xili (v. 1.1.6) is visible at http://2013.extend.xiligroup.org
 
@@ -19,4 +19,4 @@ After installation or updating, it is fully recommanded to refresh permalinks.
 
 Before updating don't forgot to keep a backup of the languages files (.mo)
 
-2014-03-04
+2014-03-18

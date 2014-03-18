@@ -5,8 +5,9 @@
 // 1.0.2 - 2014-02-09 - adapted for new permalinks class of XL 2.10.0
 // 1.0.4 - 2014-02-26 - add category, updated featured
 // 1.0.5 - 2014-03-04 - add searchform.php
+// 1.0.6 - 2014-03-18 - fixes I10n functionswith variables
 
-define( 'TWENTYFOURTEEN_XILI_VER', '1.0.5'); // as parent style.css
+define( 'TWENTYFOURTEEN_XILI_VER', '1.0.6'); // as parent style.css
 
 // main initialisation functions and version testing and message
 
@@ -16,7 +17,7 @@ function twentyfourteen_xilidev_setup () {
 
 	$minimum_xl_version = '2.9.9';
 
-	load_theme_textdomain( $theme_domain, STYLESHEETPATH . '/langs' ); // now use .mo of child
+	load_theme_textdomain( $theme_domain, get_stylesheet_directory() . '/langs' ); // now use .mo of child
 
 	$xl_required_version = false;
 
@@ -67,12 +68,12 @@ function twentyfourteen_xilidev_setup () {
 		 		// possible to adapt propagate options - here - as example - add post_content / post_excerpt to other default values - 2.8.10
 		 		'propagate_options_default' => array( 'post_content' => array ( 'default'=> '1', 'data' => 'post' ), 'post_excerpt' => array ( 'default'=> '1', 'data' => 'post' ) ),
 		 		'propagate_options' => array (
-							'post_content' => array ('name' => __('Post Content', $theme_domain ),
-							'description' => __('Copy Post Content.', $theme_domain)
+							'post_content' => array ('name' => translate('Post Content', $theme_domain ),
+							'description' => translate('Copy Post Content.', $theme_domain)
 							)),
 							array (
-							'post_excerpt' => array ('name' => __('Post Excerpt', $theme_domain ),
-							'description' => __('Copy Post Excerpt.', $theme_domain)
+							'post_excerpt' => array ('name' => translate('Post Excerpt', $theme_domain ),
+							'description' => translate('Copy Post Excerpt.', $theme_domain)
 							)),
 			) );
 
@@ -108,28 +109,28 @@ function twentyfourteen_xilidev_setup () {
 
 		$msg = '
 		<div class="error">
-			<p>' . sprintf ( __('The %s child theme requires xili-language plugin installed and activated', $theme_domain ), get_option( 'current_theme' ) ).'</p>
+			<p>' . sprintf ( translate('The %s child theme requires xili-language plugin installed and activated', $theme_domain ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
 	} elseif ( $class_ok === false )  {
 
 		$msg = '
 		<div class="error">
-			<p>' . sprintf ( __('The %s child theme requires <em>xili_language_theme_options</em> class to set multilingual features.', $theme_domain ), get_option( 'current_theme' ) ).'</p>
+			<p>' . sprintf ( translate('The %s child theme requires <em>xili_language_theme_options</em> class to set multilingual features.', $theme_domain ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
 	} elseif ( $xl_required_version )  {
 
 		$msg = '
 		<div class="updated">
-			<p>' . sprintf ( __('The %s child theme was successfully activated with xili-language.', $theme_domain ), get_option( 'current_theme' ) ).'</p>
+			<p>' . sprintf ( translate('The %s child theme was successfully activated with xili-language.', $theme_domain ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
 	} else {
 
 		$msg = '
 		<div class="error">
-			<p>' . sprintf ( __('The %1$s child theme requires xili-language version %2$s+', $theme_domain ), get_option( 'current_theme' ), $minimum_xl_version ).'</p>
+			<p>' . sprintf ( translate('The %1$s child theme requires xili-language version %2$s+', $theme_domain ), get_option( 'current_theme' ), $minimum_xl_version ).'</p>
 		</div>';
 	}
 	// after activation and in themes list

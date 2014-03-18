@@ -3,7 +3,7 @@
 
 
 class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
-	
+
 	/**
 	 * The supported post formats.
 	 *
@@ -29,9 +29,9 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 	 *
 	 * @return Twenty_Fourteen_Ephemera_Widget
 	 */
-	
+
 	public function __construct() {
-		parent::__construct( 'widget_twentyfourteen_xili_ephemera', '[©xili] '.__( 'Twenty Fourteen Ephemera', 'twentyfourteen' ), array(
+		parent::__construct( 'widget_twentyfourteen_xili_ephemera', '[&copy;xili] '.__( 'Twenty Fourteen Ephemera', 'twentyfourteen' ), array(
 			'classname'   => 'widget_twentyfourteen_ephemera',
 			'description' => __( 'Use this multilingual widget to list your recent Aside, Quote, Video, Audio, Image, Gallery, and Link posts', 'twentyfourteen' ),
 		) );
@@ -70,27 +70,27 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 			$this->_set( --$num );
 		}
 		$the_lang =	$instance['the_lang'];
-		
+
 		$the_curlang = ( class_exists('xili_language') ) ? the_curlang() : '' ;
-		
+
 		if ( $the_lang == '*' ) {
-			
+
 			if ( $the_curlang == '' ) {
 				$suffix = '';
 			} else {
 				$suffix = '_' . the_curlang();
 			}
-			
+
 		} else if ( $the_lang == '*' ) {
-			
+
 			$suffix = '';
-			
+
 		} else {
-			
+
 			$suffix = '_' . $the_lang ;
 		}
-		
-		
+
+
 		$content = get_transient( $this->id . $suffix );
 
 		if ( false !== $content ) {
@@ -102,10 +102,10 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 		extract( $args, EXTR_SKIP );
 
 		$format = $instance['format'];
-		
+
 		$number = empty( $instance['number'] ) ? 2 : absint( $instance['number'] );
 		$title  = apply_filters( 'widget_title', empty( $instance['title'] ) ? $this->format_strings[ $format ] : $instance['title'], $instance, $this->id_base );
-		
+
 		$the_lang = (  $the_lang == '*' ) ? $the_curlang : $the_lang ;
 		$ephemera_query = ( $the_lang == '' ) ?
 		 array(
@@ -123,7 +123,7 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 				),
 			),
 		)
-		: 
+		:
 		array(
 			'order'          => 'DESC',
 			'posts_per_page' => $number,
@@ -145,10 +145,10 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 				),
 			),
 		) ;
-		
-		
+
+
 		$ephemera = new WP_Query( $ephemera_query );
-		
+
 		if ( $ephemera->have_posts() ) :
 			$tmp_content_width = $GLOBALS['content_width'];
 			$GLOBALS['content_width'] = 306;
@@ -258,7 +258,7 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 
 		set_transient( $this->id . $suffix, ob_get_flush() );
 	}
-	
+
 	/**
 	 * Deal with the settings when they are saved by the admin. Here is where
 	 * any validation should happen.
@@ -290,14 +290,14 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 	 */
 	function flush_widget_cache() {
 		delete_transient( $this->id );
-		if (class_exists('xili_language')) { 
+		if (class_exists('xili_language')) {
 			global $xili_language;
 			$languages = $xili_language->get_listlanguages();
 			foreach ( $languages as $language ) {
 				delete_transient( $this->id . '_' . $language->slug );
 			}
 		}
-		
+
 	}
 
 	/**
@@ -334,8 +334,8 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 				<option value="*"<?php selected( $the_lang, '*' ); ?>><?php _e('Current language','xili-language-widget'); ?></option>
 				<?php $listlanguages = get_terms_of_groups_lite ($xili_language->langs_group_id,TAXOLANGSGROUP,TAXONAME,'ASC');
 					foreach ($listlanguages as $language) { ?>
-					<option value="<?php echo $language->slug ?>"<?php selected( $the_lang, $language->slug ); ?>><?php _e($language->description,'xili-language-widget'); ?></option>	
-						
+					<option value="<?php echo $language->slug ?>"<?php selected( $the_lang, $language->slug ); ?>><?php echo translate($language->description,'xili-language-widget'); ?></option>
+
 					<?php } /* end */
 				?>
 			</select>
@@ -343,7 +343,7 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 		<?php } ?>
 		<?php
 	}
-	
+
 }
 
 

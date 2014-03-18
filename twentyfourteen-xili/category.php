@@ -24,7 +24,7 @@ get_header(); ?>
 					//$term_description = term_description();
 					$category_description = trim( strip_tags( term_description() ) );
 					if ( ! empty( $category_description ) ):
-						printf( '<div class="taxonomy-description"><p>%s</p></div>',  __( $category_description, 'twentyfourteen' ) );
+						printf( '<div class="taxonomy-description"><p>%s</p></div>',  translate ( $category_description, 'twentyfourteen' ) );
 					endif;
 				?>
 			</header><!-- .archive-header -->
