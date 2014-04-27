@@ -4,7 +4,7 @@ wp-child-themes
 Child multilingual themes for WordPress embedded themes
 
 
-This folder contains sources of multilingual child themes of embedded themes of WordPress install.
+This folder contains sources of multilingual child themes of bundled (embedded) themes of WordPress install.
 
 The twentyfourteen-xili (v. 1.0.7) is visible at http://2014.extend.xiligroup.org
 
