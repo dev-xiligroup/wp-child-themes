@@ -6,8 +6,9 @@
 // 1.0.4 - 2014-02-26 - add category, updated featured
 // 1.0.5 - 2014-03-04 - add searchform.php
 // 1.0.6 - 2014-03-18 - fixes I10n functionswith variables
+// 1.0.7 - 2014-04-28 - need XL 2.12 - WP 3.9
 
-define( 'TWENTYFOURTEEN_XILI_VER', '1.0.6'); // as parent style.css
+define( 'TWENTYFOURTEEN_XILI_VER', '1.0.7-wp3.9'); // as parent style.css
 
 // main initialisation functions and version testing and message
 
@@ -15,7 +16,7 @@ function twentyfourteen_xilidev_setup () {
 
 	$theme_domain = 'twentyfourteen';
 
-	$minimum_xl_version = '2.9.9';
+	$minimum_xl_version = '2.12.0';
 
 	load_theme_textdomain( $theme_domain, get_stylesheet_directory() . '/langs' ); // now use .mo of child
 
@@ -42,12 +43,8 @@ function twentyfourteen_xilidev_setup () {
 			require_once ( $xili_functionsfolder . '/multilingual-functions.php' );
 		}
 
-
-
-	//register_nav_menu ( 'toto', 'essai' );
-
 		global $xili_language_theme_options ; // used on both side
-	// Args dedicaced to this theme named Twenty Fourteen
+		// Args dedicated to this theme named Twenty Fourteen
 		$xili_args = array (
 	 		'customize_clone_widget_containers' => true, // comment or set to true to clone widget containers
 	 		'settings_name' => 'xili_2014_theme_options', // name of array saved in options table
@@ -64,17 +61,7 @@ function twentyfourteen_xilidev_setup () {
 		 		'customize_adds' => true, // add settings in customize page
 		 		'customize_addmenu' => false, // done by 2013
 		 		'capability' => 'edit_theme_options',
-		 		'authoring_options_admin' => true,
-		 		// possible to adapt propagate options - here - as example - add post_content / post_excerpt to other default values - 2.8.10
-		 		'propagate_options_default' => array( 'post_content' => array ( 'default'=> '1', 'data' => 'post' ), 'post_excerpt' => array ( 'default'=> '1', 'data' => 'post' ) ),
-		 		'propagate_options' => array (
-							'post_content' => array ('name' => translate('Post Content', $theme_domain ),
-							'description' => translate('Copy Post Content.', $theme_domain)
-							)),
-							array (
-							'post_excerpt' => array ('name' => translate('Post Excerpt', $theme_domain ),
-							'description' => translate('Copy Post Excerpt.', $theme_domain)
-							)),
+		 		'authoring_options_admin' => false
 			) );
 
 			if ( class_exists ( 'xili_language_theme_options_admin' )  ) {
@@ -94,6 +81,21 @@ function twentyfourteen_xilidev_setup () {
 				$class_ok = false ;
 			}
 		}
+		// new ways to add parameters in authoring propagation
+		add_theme_support('xiliml-authoring-rules', array ( 
+			'post_content' => array('default' => '1',
+				'data' => 'post',
+				'hidden' => '',
+				'name' => 'Post Content',
+				'description' => __('Will copy content in the future translated post', 'twentyfourteen')
+		),
+			'post_parent' => array('default' => '1',
+				'data' => 'post',
+				'name' => 'Post Parent',
+				'hidden' => '1',
+				'description' => __('Will copy translated parent id (if original has parent and translated parent)!', 'twentyfourteen')
+		))
+		); // 
 
 		$xili_theme_options = get_theme_xili_options() ;
 		// to collect checked value in xili-options of theme
@@ -139,10 +141,11 @@ function twentyfourteen_xilidev_setup () {
 
 	// end errors...
 
-	remove_filter( 'wp_title', 'twentyfourteen_wp_title', 10, 2 ); // see function and new filter at end
+	// remove_filter( 'wp_title', 'twentyfourteen_wp_title', 10, 2 ); // see function and new filter at end fixed in WP 3.9
 
 }
 add_action( 'after_setup_theme', 'twentyfourteen_xilidev_setup', 11 );
+
 
 //To avoid conflict if a plugin has this class Featured_Content
 if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow'] ) {
@@ -308,7 +311,7 @@ function twentyfourteen_xili_wp_title( $title, $sep ) {
 	}
 
 	// Add the site name.
-	$title .= get_bloginfo( 'name', 'display' ); // xili 2014-01-12
+	$title .= get_bloginfo( 'name', 'display' ); // xili 2014-01-12 - fixed in WP 3.9 - no need filter
 
 	// Add the site description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
@@ -324,7 +327,7 @@ function twentyfourteen_xili_wp_title( $title, $sep ) {
 	return $title;
 }
 // original removed in after theme setup 2014-01
-add_filter( 'wp_title', 'twentyfourteen_xili_wp_title', 10, 2 );
+// add_filter( 'wp_title', 'twentyfourteen_xili_wp_title', 10, 2 );
 
 
 /**
