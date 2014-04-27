@@ -10,9 +10,13 @@ The twentyfourteen-xili (v. 1.0.7) is visible at http://2014.extend.xiligroup.or
 
 The twentythirteen-xili (v. 1.1.6) is visible at http://2013.extend.xiligroup.org
 
-*Prerequisites* : xili-language plugin must be activated.
+*Prerequisites* : 
+
+WordPress 3.9 (waiting 3.9.1)   and his updated twentyfourteen
 
 xili-language version 2.12 (with new theme-multilingual-classes and more...)
+
+xili-language plugin must be activated.
 
 The plugin is available here : http://wordpress.org/plugins/xili-language/
 
