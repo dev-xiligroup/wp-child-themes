@@ -45,7 +45,7 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 	 */
 	
 	public function __construct() {
-		parent::__construct( 'widget_twentyfourteen_xili_ephemera', '[©xili] '.__( 'Twenty Fourteen Ephemera', 'twentyfourteen' ), array(
+		parent::__construct( 'widget_twentyfourteen_xili_ephemera', '[&copy;xili] '.__( 'Twenty Fourteen Ephemera', 'twentyfourteen' ), array(
 			'classname'   => 'widget_twentyfourteen_ephemera',
 			'description' => __( 'Use this multilingual widget to list your recent Aside, Quote, Video, Audio, Image, Gallery, and Link posts', 'twentyfourteen' ),
 		) );
@@ -324,7 +324,7 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 						<option value="*"<?php selected( $the_lang, '*' ); ?>><?php _e('Current language','xili-language-widget'); ?></option>
 						<?php $listlanguages = get_terms_of_groups_lite ($xili_language->langs_group_id,TAXOLANGSGROUP,TAXONAME,'ASC');
 							foreach ($listlanguages as $language) { ?>
-							<option value="<?php echo $language->slug ?>"<?php selected( $the_lang, $language->slug ); ?>><?php _e($language->description,'xili-language-widget'); ?></option>
+							<option value="<?php echo $language->slug ?>"<?php selected( $the_lang, $language->slug ); ?>><?php echo translate($language->description,'xili-language-widget'); ?></option>
 
 							<?php } /* end */
 						?>

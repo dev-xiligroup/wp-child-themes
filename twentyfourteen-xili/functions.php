@@ -16,7 +16,7 @@ function twentyfourteen_xilidev_setup () {
 
 	$theme_domain = 'twentyfourteen';
 
-	$minimum_xl_version = '2.12.0';
+	$minimum_xl_version = '2.11.9';
 
 	load_theme_textdomain( $theme_domain, get_stylesheet_directory() . '/langs' ); // now use .mo of child
 
@@ -64,7 +64,7 @@ function twentyfourteen_xilidev_setup () {
 		 		'authoring_options_admin' => false
 			) );
 
-			if ( class_exists ( 'xili_language_theme_options_admin' )  ) {
+			if ( class_exists ( 'xili_language_theme_options_admin' ) ) {
 				$xili_language_theme_options = new xili_language_theme_options_admin ( $xili_admin_args );
 				$class_ok = true ;
 			} else {
@@ -74,7 +74,7 @@ function twentyfourteen_xilidev_setup () {
 
 		} else { // visitors side - frontend
 
-			if ( class_exists ( 'xili_language_theme_options' )  ) {
+			if ( class_exists ( 'xili_language_theme_options' ) ) {
 				$xili_language_theme_options = new xili_language_theme_options ( $xili_args );
 				$class_ok = true ;
 			} else {
@@ -82,7 +82,7 @@ function twentyfourteen_xilidev_setup () {
 			}
 		}
 		// new ways to add parameters in authoring propagation
-		add_theme_support('xiliml-authoring-rules', array ( 
+		add_theme_support('xiliml-authoring-rules', array (
 			'post_content' => array('default' => '1',
 				'data' => 'post',
 				'hidden' => '',
@@ -95,7 +95,7 @@ function twentyfourteen_xilidev_setup () {
 				'hidden' => '1',
 				'description' => __('Will copy translated parent id (if original has parent and translated parent)!', 'twentyfourteen')
 		))
-		); // 
+		); //
 
 		$xili_theme_options = get_theme_xili_options() ;
 		// to collect checked value in xili-options of theme
@@ -114,14 +114,14 @@ function twentyfourteen_xilidev_setup () {
 			<p>' . sprintf ( translate('The %s child theme requires xili-language plugin installed and activated', $theme_domain ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
-	} elseif ( $class_ok === false )  {
+	} elseif ( $class_ok === false ) {
 
 		$msg = '
 		<div class="error">
 			<p>' . sprintf ( translate('The %s child theme requires <em>xili_language_theme_options</em> class to set multilingual features.', $theme_domain ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
-	} elseif ( $xl_required_version )  {
+	} elseif ( $xl_required_version ) {
 
 		$msg = '
 		<div class="updated">
@@ -147,6 +147,17 @@ function twentyfourteen_xilidev_setup () {
 add_action( 'after_setup_theme', 'twentyfourteen_xilidev_setup', 11 );
 
 
+function twentyfourteen_xilidev_setup_featured () {
+	remove_theme_support( 'featured-content' );
+	// Add support for featured content.
+	add_theme_support( 'featured-content', array(
+		'featured_content_filter' => 'twentyfourteen_get_featured_posts',
+		'max_posts' => 3
+	) );
+}
+add_action( 'after_setup_theme', 'twentyfourteen_xilidev_setup_featured', 11 ); // comment to reset max_posts to 6 as in parent
+
+
 //To avoid conflict if a plugin has this class Featured_Content
 if ( ! class_exists( 'Featured_Content' ) && 'plugins.php' !== $GLOBALS['pagenow'] ) {
 	require get_stylesheet_directory() . '/inc/featured-content.php';
@@ -167,7 +178,7 @@ function xili_customize_js_footer () {
 
 }
 // need to be here not as hook not in class
-add_action( 'customize_preview_init', 'xili_customize_js_footer', 9  ); // before parent 2013 to be in footer
+add_action( 'customize_preview_init', 'xili_customize_js_footer', 9 ); // before parent 2013 to be in footer
 
 
 /**
@@ -267,11 +278,11 @@ function twentyfourteen_xili_header_image () {
 		if ( ! empty( $header_image_url ) ) :
 			$header_image_width =  get_custom_header()->width; // default values
 			$header_image_height = get_custom_header()->height;
-			if ( class_exists ( 'xili_language' ) && isset ( $xili_theme_options['xl_header'] ) &&  $xili_theme_options['xl_header'] ) {
+			if ( class_exists ( 'xili_language' ) && isset ( $xili_theme_options['xl_header'] ) && $xili_theme_options['xl_header'] ) {
 				global $xili_language, $xili_language_theme_options ;
 				// check if image exists in current language
 				// 2013-10-10 - Tiago suggestion
-				$curlangslug = ( '' == the_curlang() ) ? strtolower( $xili_language->default_lang ) :  the_curlang() ;
+				$curlangslug = ( '' == the_curlang() ) ? strtolower( $xili_language->default_lang ) : the_curlang() ;
 
 
 					$headers = get_uploaded_header_images(); // search in uploaded header list
@@ -347,7 +358,7 @@ function twentyfourteen_flags_style () {
 			$language_xili_settings = get_option('xili_language_settings');
 		}
 
-		$language_slugs_list =  array_keys ( $language_xili_settings['langs_ids_array'] ) ;
+		$language_slugs_list = array_keys ( $language_xili_settings['langs_ids_array'] ) ;
 
 		?>
 		<style type="text/css">
@@ -363,7 +374,7 @@ function twentyfourteen_flags_style () {
 			echo "ul.nav-menu li.lang-{$slug} a:hover {background: transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 17px !important;}\n";
 			$ulmenus[] = "ul.nav-menu li.lang-{$slug} a";
 		}
-			echo implode (', ', $ulmenus ) . " {text-indent:-9999px; width:24px;  }\n";
+			echo implode (', ', $ulmenus ) . " {text-indent:-9999px; width:24px; }\n";
 		?>
 		</style>
 		<?php

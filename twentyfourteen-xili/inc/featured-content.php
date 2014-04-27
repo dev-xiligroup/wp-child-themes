@@ -160,11 +160,11 @@ class Featured_Content {
 
 			$language_qvs = $xili_language->xili_settings['shortqv_slug_array'] ;
 
-			$curlang = ( isset ( $wp_query->query_vars[QUETAG] )  ) ? $language_qvs[ $wp_query->query_vars[QUETAG] ] : $xili_language->choice_of_browsing_language() ;
+			$curlang = ( isset ( $wp_query->query_vars[QUETAG] ) ) ? $language_qvs[ $wp_query->query_vars[QUETAG] ] : $xili_language->choice_of_browsing_language() ;
 
 		} else {
 
-			$curlang = ( isset ( $wp_query->query_vars[QUETAG] )  ) ? $wp_query->query_vars[QUETAG] : $xili_language->choice_of_browsing_language() ;
+			$curlang = ( isset ( $wp_query->query_vars[QUETAG] ) ) ? $wp_query->query_vars[QUETAG] : $xili_language->choice_of_browsing_language() ;
 
 		}
 
@@ -172,7 +172,7 @@ class Featured_Content {
 
 		$ext = ( '' != $curlang ) ? '_' . $curlang : '';
 
-		$featured_ids =  get_transient( 'featured_content_ids' . $ext );
+		$featured_ids = get_transient( 'featured_content_ids' . $ext );
 
 		if ( ! empty( $featured_ids ) ) {
 			return array_map( 'absint', (array) $featured_ids );
@@ -190,7 +190,7 @@ class Featured_Content {
 
 		// Query for featured posts.
 		$query = ( '' != $curlang ) ? array(
-			'numberposts' => $settings['quantity'],
+			'numberposts' => self::$max_posts,
 			'tax_query'   => array(
 				'relation' => 'AND',
 				array(
@@ -207,7 +207,7 @@ class Featured_Content {
 		)
 		:
 		array(
-			'numberposts' => $settings['quantity'],
+			'numberposts' => self::$max_posts,
 			'tax_query'   => array(
 
 				array(
@@ -246,7 +246,7 @@ class Featured_Content {
 	 */
 	public static function get_sticky_posts() {
 		$settings = self::get_setting();
-		return array_slice( get_option( 'sticky_posts', array() ), 0, $settings['quantity'] );
+		return array_slice( get_option( 'sticky_posts', array() ), 0, self::$max_posts );
 	}
 
 	/**
@@ -526,14 +526,12 @@ class Featured_Content {
 
 		$defaults = array(
 			'hide-tag' => 1,
-			'quantity' => 9, // xili
 			'tag-id'   => 0,
 			'tag-name' => _x( 'featured', 'featured content default tag slug', 'twentyfourteen' ),
 		);
 
 		$options = wp_parse_args( $saved, $defaults );
 		$options = array_intersect_key( $options, $defaults );
-		$options['quantity'] = self::sanitize_quantity( $options['quantity'] );
 
 		if ( 'all' != $key ) {
 			return isset( $options[ $key ] ) ? $options[ $key ] : false;
@@ -577,10 +575,6 @@ class Featured_Content {
 			$output['tag-name'] = $input['tag-name'];
 		}
 
-		if ( isset( $input['quantity'] ) ) {
-			$output['quantity'] = self::sanitize_quantity( $input['quantity'] );
-		}
-
 		$output['hide-tag'] = isset( $input['hide-tag'] ) && $input['hide-tag'] ? 1 : 0;
 
 		// Delete the featured post ids transient.
@@ -589,27 +583,6 @@ class Featured_Content {
 		return $output;
 	}
 
-	/**
-	 * Sanitize quantity of featured posts.
-	 *
-	 * @static
-	 * @access public
-	 * @since Twenty Fourteen 1.0
-	 *
-	 * @param int $input The value to sanitize.
-	 * @return int A number between 1 and FeaturedContent::$max_posts.
-	 */
-	public static function sanitize_quantity( $input ) {
-		$quantity = absint( $input );
-
-		if ( $quantity > self::$max_posts ) {
-			$quantity = self::$max_posts;
-		} else if ( 1 > $quantity ) {
-			$quantity = 1;
-		}
-
-		return $quantity;
-	}
 
 } // Featured_Content
 
