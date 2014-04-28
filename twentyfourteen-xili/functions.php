@@ -295,9 +295,11 @@ function twentyfourteen_xili_header_image () {
 
 						if ( isset ( $xili_theme_options['xl_header_list'][$curlangslug] ) && $header_key == $xili_theme_options['xl_header_list'][$curlangslug] ) {
 							$header_image_url = $header['url'];
-							$header_image_width = $header['width'];
-							$header_image_height = $header['height'];
-							 break ;
+
+							$header_image_width = ( isset($header['width']) ) ? $header['width']: get_custom_header()->width;
+							$header_image_height = ( isset($header['height']) ) ? $header['height']: get_custom_header()->height; // not in default (but in uploaded)
+
+							break ;
 						}
 					}
 			 }
