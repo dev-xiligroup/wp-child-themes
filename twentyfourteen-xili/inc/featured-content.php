@@ -160,7 +160,7 @@ class Featured_Content {
 
 			$language_qvs = $xili_language->xili_settings['shortqv_slug_array'] ;
 
-			$curlang = ( isset ( $wp_query->query_vars[QUETAG] ) ) ? $language_qvs[ $wp_query->query_vars[QUETAG] ] : $xili_language->choice_of_browsing_language() ;
+			$curlang = ( isset ( $wp_query->query_vars[QUETAG] ) ) ? ( ( isset ( $language_qvs[ $wp_query->query_vars[QUETAG] ] ) ) ? $language_qvs[ $wp_query->query_vars[QUETAG] ] : $xili_language->choice_of_browsing_language() ) : $xili_language->choice_of_browsing_language() ;
 
 		} else {
 
@@ -191,7 +191,7 @@ class Featured_Content {
 		// Query for featured posts.
 		$query = ( '' != $curlang ) ? array(
 			'numberposts' => self::$max_posts,
-			'tax_query'   => array(
+			'tax_query' => array(
 				'relation' => 'AND',
 				array(
 					'field'    => 'term_id',
@@ -208,7 +208,7 @@ class Featured_Content {
 		:
 		array(
 			'numberposts' => self::$max_posts,
-			'tax_query'   => array(
+			'tax_query' => array(
 
 				array(
 					'field'    => 'term_id',

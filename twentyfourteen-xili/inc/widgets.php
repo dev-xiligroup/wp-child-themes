@@ -318,10 +318,19 @@ class Twenty_Fourteen_xili_Ephemera_Widget extends WP_Widget {
 			<?php if (class_exists('xili_language')) {
 				global $xili_language; ?>
 				<p>
-					<label for="<?php echo $this->get_field_id('the_lang'); ?>"><?php _e('Language:','xili-language-widget'); ?></label>
+					<label for="<?php echo $this->get_field_id('the_lang'); ?>">
+						<?php /* translators: added in child widget by xili */
+						_e('Language:','xili-language-widget');
+						?></label>
 					<select name="<?php echo $this->get_field_name('the_lang'); ?>" id="<?php echo $this->get_field_id('the_lang'); ?>" class="widefat">
-						<option value=""<?php selected( $the_lang, '' ); ?>><?php _e('All languages','xili-language-widget'); ?></option>
-						<option value="*"<?php selected( $the_lang, '*' ); ?>><?php _e('Current language','xili-language-widget'); ?></option>
+						<option value=""<?php selected( $the_lang, '' ); ?>>
+							<?php /* translators: added in child widget by xili */
+							_e('All languages','xili-language-widget'); ?>
+						</option>
+						<option value="*"<?php selected( $the_lang, '*' ); ?>>
+							<?php /* translators: added in child widget by xili */
+							_e('Current language','xili-language-widget'); ?>
+						</option>
 						<?php $listlanguages = get_terms_of_groups_lite ($xili_language->langs_group_id,TAXOLANGSGROUP,TAXONAME,'ASC');
 							foreach ($listlanguages as $language) { ?>
 							<option value="<?php echo $language->slug ?>"<?php selected( $the_lang, $language->slug ); ?>><?php echo translate($language->description,'xili-language-widget'); ?></option>

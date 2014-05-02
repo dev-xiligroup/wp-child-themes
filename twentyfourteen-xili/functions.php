@@ -87,12 +87,14 @@ function twentyfourteen_xilidev_setup () {
 				'data' => 'post',
 				'hidden' => '',
 				'name' => 'Post Content',
+				/* translators: added in child functions by xili */
 				'description' => __('Will copy content in the future translated post', 'twentyfourteen')
 		),
 			'post_parent' => array('default' => '1',
 				'data' => 'post',
 				'name' => 'Post Parent',
 				'hidden' => '1',
+				/* translators: added in child functions by xili */
 				'description' => __('Will copy translated parent id (if original has parent and translated parent)!', 'twentyfourteen')
 		))
 		); //
@@ -110,29 +112,33 @@ function twentyfourteen_xilidev_setup () {
 	if ( ! class_exists( 'xili_language' ) ) {
 
 		$msg = '
-		<div class="error">
-			<p>' . sprintf ( translate('The %s child theme requires xili-language plugin installed and activated', $theme_domain ), get_option( 'current_theme' ) ).'</p>
+		<div class="error">'.
+			/* translators: added in child functions by xili */
+			'<p>' . sprintf ( __('The %s child theme requires xili-language plugin installed and activated', 'twentyfourteen' ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
 	} elseif ( $class_ok === false ) {
 
 		$msg = '
-		<div class="error">
-			<p>' . sprintf ( translate('The %s child theme requires <em>xili_language_theme_options</em> class to set multilingual features.', $theme_domain ), get_option( 'current_theme' ) ).'</p>
+		<div class="error">'.
+			/* translators: added in child functions by xili */
+			'<p>' . sprintf ( __('The %s child theme requires <em>xili_language_theme_options</em> class to set multilingual features.', 'twentyfourteen' ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
 	} elseif ( $xl_required_version ) {
 
 		$msg = '
-		<div class="updated">
-			<p>' . sprintf ( translate('The %s child theme was successfully activated with xili-language.', $theme_domain ), get_option( 'current_theme' ) ).'</p>
+		<div class="updated">'.
+			/* translators: added in child functions by xili */
+			'<p>' . sprintf ( __('The %s child theme was successfully activated with xili-language.', 'twentyfourteen' ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
 	} else {
 
 		$msg = '
-		<div class="error">
-			<p>' . sprintf ( translate('The %1$s child theme requires xili-language version %2$s+', $theme_domain ), get_option( 'current_theme' ), $minimum_xl_version ).'</p>
+		<div class="error">'.
+			/* translators: added in child functions by xili */
+			'<p>' . sprintf ( __('The %1$s child theme requires xili-language version %2$s+', 'twentyfourteen' ), get_option( 'current_theme' ), $minimum_xl_version ).'</p>
 		</div>';
 	}
 	// after activation and in themes list
@@ -205,17 +211,20 @@ if ( class_exists('xili_language') )  // if temporary disabled
 function twentyfourteen_xilidev_setup_custom_header () {
 
 	// %2$s = in child
+
 	register_default_headers( array(
 		'xili2014' => array(
 
 			'url'           => '%2$s/images/headers/header-xili.jpg',
 			'thumbnail_url' => '%2$s/images/headers/header-xili-thumbnail.jpg',
+			/* translators: added in child functions by xili */
 			'description'   => _x( '2014 by xili', 'header image description', 'twentyfourteen' )
 			),
 		'xili2014-2' => array(
 
 			'url'           => '%2$s/images/headers/header-xili2.jpg',
 			'thumbnail_url' => '%2$s/images/headers/header-xili2-thumbnail.jpg',
+			/* translators: added in child functions by xili */
 			'description'   => _x( '2014.2 by xili', 'header image description', 'twentyfourteen' )
 			)
 		)
@@ -239,35 +248,38 @@ function twentyfourteen_xilidev_setup_custom_header () {
 	add_theme_support( 'custom-header', $args ); // need 8 in add_action to overhide parent
 
 }
-add_action( 'after_setup_theme', 'twentyfourteen_xilidev_setup_custom_header', 9 );
+add_action( 'after_setup_theme', 'twentyfourteen_xilidev_setup_custom_header', 12 ); // 12 - child translation is active
 
 function twentyfourteen_reset_default_theme_value ( $theme ) {
 	set_theme_mod( 'header-text-color', 'fffff0' ); // to force first insertion // same in css
 }
 add_action('after_switch_theme', 'twentyfourteen_reset_default_theme_value' );
 
-add_action("admin_head-appearance_page_custom-header", "twentyfourteen_xili_header_help", 15);
-
+// added in help of main header image
 function twentyfourteen_xili_header_help ( ) {
 	global $xili_language_theme_options;
 	$header_setting_url = admin_url('/themes.php?page='. $xili_language_theme_options->settings_name );
 
 	get_current_screen()->add_help_tab( array(
 			'id'      => 'set-header-image-xili',
+			/* translators: added in child functions by xili */
 			'title'   => __('Multilingual Header Image in 2014-xili', 'twentyfourteen'),
 			'content' =>
+			/* translators: added in child functions by xili */
 				'<p>' . __( 'You can set a custom image header for your site according each current language. When the language changes, the header image will change. The default header image is assigned to unknown unaffected language.', 'twentyfourteen' ) . '</p>' .
+			/* translators: added in child functions by xili */
 				'<p>' . sprintf( __( 'The images will be assigned to the language in the %1$sXili-Options%2$s  Appearance settings page.', 'twentyfourteen'),'<a href="'.$header_setting_url.'">' ,'</a>' ). '</p>'
 		) );
 
 }
+add_action("admin_head-appearance_page_custom-header", "twentyfourteen_xili_header_help", 15);
 
 // for xili
 function twentyfourteen_xili_header_image () {
 
 	$header_image_url = get_header_image();
 
-	$text_color   = get_header_textcolor();
+	$text_color = get_header_textcolor();
 
 	// If no custom options for text are set, let's bail.
 	if ( empty( $header_image_url ) )
@@ -276,7 +288,7 @@ function twentyfourteen_xili_header_image () {
 	// If we get this far, we have custom styles.
 
 		if ( ! empty( $header_image_url ) ) :
-			$header_image_width =  get_custom_header()->width; // default values
+			$header_image_width = get_custom_header()->width; // default values
 			$header_image_height = get_custom_header()->height;
 			if ( class_exists ( 'xili_language' ) && isset ( $xili_theme_options['xl_header'] ) && $xili_theme_options['xl_header'] ) {
 				global $xili_language, $xili_language_theme_options ;
@@ -339,7 +351,7 @@ function twentyfourteen_xili_wp_title( $title, $sep ) {
 
 	return $title;
 }
-// original removed in after theme setup 2014-01
+// original removed in after theme setup 2014-01 - fixed in 3.9
 // add_filter( 'wp_title', 'twentyfourteen_xili_wp_title', 10, 2 );
 
 
@@ -384,6 +396,26 @@ function twentyfourteen_flags_style () {
 	}
 }
 
+/**
+ * filters when propagate post columns - example
+ *
+ */
+function my_xiliml_propagate_post_columns($from_post_column, $key, $from_lang_slug, $to_lang_slug ) {
+	switch ( $key ) {
+		case 'post_content':
+			$from_lang = translate( xili_get_language_field ( 'full name', $from_lang_slug ), 'twentyfourteen' );
+			$to_lang = translate( xili_get_language_field ( 'full name', $to_lang_slug ), 'twentyfourteen' );
+			/* translators: added in child function by xili */
+			$to_post_column = '<p>'. sprintf (__('The content in %1$s below must be translated in %2$s !', 'twentyfourteen'), $from_lang, $to_lang ). '</p>' . $from_post_column;
+			break;
+
+		default:
+		$to_post_column = $from_post_column;
+	}
+	return $to_post_column;
+}
+
+add_filter ('xiliml_propagate_post_columns', 'my_xiliml_propagate_post_columns', 10, 4 );
 
 /**
  * add search other languages in form - see functions.php when fired
@@ -412,6 +444,7 @@ function is_xili_adjacent_filterable() {
 
 
 function twentyfourteen_xili_credits () {
+	/* translators: added in child function by xili */
 	printf( __("Multilingual child theme of Twenty Fourteen by %s", 'twentyfourteen' ),"<a href=\"http://dev.xiligroup.com\">dev.xiligroup</a> - " );
 }
 
