@@ -5,7 +5,7 @@
 
 
 global $wp_version;
-if ( version_compare( $wp_version, '3.8.9', '>' ) ){ // to test with alpha 3.8.9
+if ( version_compare( $wp_version, '3.10.9', '>' ) ){ // to test with alpha 3.8.9
 
 	function xili_get_adjacent_post_query_args( $query_args, $args ){
 		$current_post = get_post( $args['post'] );
@@ -15,18 +15,18 @@ if ( version_compare( $wp_version, '3.8.9', '>' ) ){ // to test with alpha 3.8.9
 			if ( isset ( $query_args['tax_query'] )) {
 				$query_args['tax_query'][] =
 				array(
-					'field'    => 'slug',
-					'taxonomy' => TAXONAME, // language
-					'terms'    => $curlang->slug,
+					'field'		=> 'slug',
+					'taxonomy'	=> TAXONAME, // language
+					'terms'		=> $curlang->slug,
 				);
 				$query_args['tax_query']['relation'] = 'AND';
 
 			} else {
 				$query_args['tax_query'] = array(
 				array(
-					'field'    => 'slug',
-					'taxonomy' => TAXONAME, // language
-					'terms'    => $curlang->slug,
+					'field'		=> 'slug',
+					'taxonomy'	=> TAXONAME, // language
+					'terms'		=> $curlang->slug,
 				),
 			);
 			}
@@ -81,7 +81,7 @@ if ( version_compare( $wp_version, '3.8.9', '>' ) ){ // to test with alpha 3.8.9
 
 /**
  * this part for language like khmer without set_locale on server
- * to be active, the item  Server Entities Charset: must be set to "no_locale" for the target language (here km_kh)
+ * to be active, the item Server Entities Charset: must be set to "no_locale" for the target language (here km_kh)
  * called in xl by function the_xili_wp_local_time
  */
 
@@ -90,7 +90,7 @@ function xili_translate_date ( $slug, $text ) {
 	switch ($slug) {
 
 		case 'hu_hu': // examples of texts kept in WP hu_HU.po kit - not able to verify - just for demo Hungarian - Magyar
-		// Date Format: F j, Y is translated in Y. F j.  l
+		// Date Format: F j, Y is translated in Y. F j. l
 		// here with no_locale - not needed on internal 10.6.8 server when set UTF-8 on Charset or MAMP
 			$text = str_replace('January', 'január', $text);
 			$text = str_replace('February', 'február', $text);
@@ -142,7 +142,7 @@ function xili_translate_date ( $slug, $text ) {
 			$text = str_replace('th', '', $text);
 			$text = str_replace('st', '', $text);
 			$text = str_replace('rd', '', $text);
-		    break;
+			break;
 
 		case 'km_kh':
 			$text = str_replace('1', '១', $text);
