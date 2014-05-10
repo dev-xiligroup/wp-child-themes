@@ -1,10 +1,10 @@
 <?php
 /**
- * The template for displaying Tag pages.
+ * The template for displaying Tag pages
  *
  * Used to display archive-type pages for posts in a tag.
  *
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
+ * @link http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
  * @subpackage Twenty_Thirteen
@@ -23,17 +23,12 @@ get_header(); ?>
 				<?php if ( tag_description() ) : // Show an optional tag description ?>
 				<div class="archive-meta"><?php echo tag_description(); ?></div>
 				<?php endif; ?>
-				<div class="archive-meta"><?php 
+				<div class="archive-meta"><?php
 				
-				//echo serialize( is_tag() ); 
-				
-				//echo serialize( is_archive() );
-				if ( class_exists ( 'xili_tidy_tags' )  ) {
-					$format = ( class_exists ( 'xili_language' ) ) ? '%1$s [%2$s]' : '%1$s' ;
-					echo xili_tidy_tags_group_links ( array( 'separator'=> ', ', 'lang' => $format)); 
-					//if ( class_exists ( 'xili_language' ) && 'en_us' != the_curlang() )
-						//echo ' - a link: <a href="' . xili_tidy_tag_in_other_lang("format=term_link&lang=en_US") . '" >in english</a> (test new XTT) '; 
-				}
+					if ( class_exists ( 'xili_tidy_tags' ) ) {
+						$format = ( class_exists ( 'xili_language' ) ) ? '%1$s [%2$s]' : '%1$s' ;
+						echo xili_tidy_tags_group_links ( array( 'separator'=> ', ', 'lang' => $format));
+					}
 				?></div>
 			</header><!-- .archive-header -->
 

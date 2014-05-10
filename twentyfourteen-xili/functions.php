@@ -7,8 +7,9 @@
 // 1.0.5 - 2014-03-04 - add searchform.php
 // 1.0.6 - 2014-03-18 - fixes I10n functionswith variables
 // 1.0.7 - 2014-04-28 - need XL 2.12 - WP 3.9
+// 1.1.0 - 2014-05-09 - need XL 2.12 - WP 3.9.1
 
-define( 'TWENTYFOURTEEN_XILI_VER', '1.0.7-wp3.9'); // as parent style.css
+define( 'TWENTYFOURTEEN_XILI_VER', '1.1.0'); // as parent style.css
 
 // main initialisation functions and version testing and message
 
@@ -46,11 +47,11 @@ function twentyfourteen_xilidev_setup () {
 		global $xili_language_theme_options ; // used on both side
 		// Args dedicated to this theme named Twenty Fourteen
 		$xili_args = array (
-	 		'customize_clone_widget_containers' => true, // comment or set to true to clone widget containers
-	 		'settings_name' => 'xili_2014_theme_options', // name of array saved in options table
-	 		'theme_name' => 'Twenty Fourteen',
-	 		'theme_domain' => $theme_domain,
-	 		'child_version' => TWENTYFOURTEEN_XILI_VER
+			'customize_clone_widget_containers' => true, // comment or set to true to clone widget containers
+			'settings_name' => 'xili_2014_theme_options', // name of array saved in options table
+			'theme_name' => 'Twenty Fourteen',
+			'theme_domain' => $theme_domain,
+			'child_version' => TWENTYFOURTEEN_XILI_VER
 		);
 
 		if ( is_admin() ) {
@@ -58,10 +59,10 @@ function twentyfourteen_xilidev_setup () {
 		// Admin args dedicaced to this theme
 
 			$xili_admin_args = array_merge ( $xili_args, array (
-		 		'customize_adds' => true, // add settings in customize page
-		 		'customize_addmenu' => false, // done by 2013
-		 		'capability' => 'edit_theme_options',
-		 		'authoring_options_admin' => false
+				'customize_adds' => true, // add settings in customize page
+				'customize_addmenu' => false, // done by 2013
+				'capability' => 'edit_theme_options',
+				'authoring_options_admin' => false
 			) );
 
 			if ( class_exists ( 'xili_language_theme_options_admin' ) ) {
@@ -196,7 +197,7 @@ function special_head() {
 	// to change search form of widget
 	// if ( is_front_page() || is_category() || is_search() )
 	if ( is_search() || is_404() ) {
-	 	add_filter('get_search_form', 'my_langs_in_search_form_2014', 10, 1); // here below
+		add_filter('get_search_form', 'my_langs_in_search_form_2014', 10, 1); // here below
 	}
 	$xili_theme_options = get_theme_xili_options() ;
 
@@ -204,7 +205,7 @@ function special_head() {
 		twentyfourteen_flags_style(); // insert dynamic css
 	}
 }
-if ( class_exists('xili_language') )  // if temporary disabled
+if ( class_exists('xili_language') )	// if temporary disabled
 	add_action( 'wp_head', 'special_head', 11);
 
 
@@ -215,34 +216,34 @@ function twentyfourteen_xilidev_setup_custom_header () {
 	register_default_headers( array(
 		'xili2014' => array(
 
-			'url'           => '%2$s/images/headers/header-xili.jpg',
+			'url'			=> '%2$s/images/headers/header-xili.jpg',
 			'thumbnail_url' => '%2$s/images/headers/header-xili-thumbnail.jpg',
 			/* translators: added in child functions by xili */
-			'description'   => _x( '2014 by xili', 'header image description', 'twentyfourteen' )
+			'description'	=> _x( '2014 by xili', 'header image description', 'twentyfourteen' )
 			),
 		'xili2014-2' => array(
 
-			'url'           => '%2$s/images/headers/header-xili2.jpg',
+			'url'			=> '%2$s/images/headers/header-xili2.jpg',
 			'thumbnail_url' => '%2$s/images/headers/header-xili2-thumbnail.jpg',
 			/* translators: added in child functions by xili */
-			'description'   => _x( '2014.2 by xili', 'header image description', 'twentyfourteen' )
+			'description'	=> _x( '2014.2 by xili', 'header image description', 'twentyfourteen' )
 			)
 		)
 	);
 
 	$args = array(
 		// Text color and image (empty to use none).
-		'default-text-color'     => 'fffff0', // diff of parent
-		'default-image'          => '%2$s/images/headers/header-xili.jpg',
+		'default-text-color'	=> 'fffff0', // diff of parent
+		'default-image'			=> '%2$s/images/headers/header-xili.jpg',
 
 		// Set height and width, with a maximum value for the width.
-		'height'                 => 48,
-		'width'                  => 1260,
+		'height'				=> 48,
+		'width'					=> 1260,
 
 		// Callbacks for styling the header and the admin preview.
-		'wp-head-callback'       => 'twentyfourteen_header_style',
-		'admin-head-callback'    => 'twentyfourteen_admin_header_style',
-		'admin-preview-callback' => 'twentyfourteen_admin_header_image',
+		'wp-head-callback'			=> 'twentyfourteen_header_style',
+		'admin-head-callback'		=> 'twentyfourteen_admin_header_style',
+		'admin-preview-callback'	=> 'twentyfourteen_admin_header_image',
 	);
 
 	add_theme_support( 'custom-header', $args ); // need 8 in add_action to overhide parent
@@ -261,14 +262,14 @@ function twentyfourteen_xili_header_help ( ) {
 	$header_setting_url = admin_url('/themes.php?page='. $xili_language_theme_options->settings_name );
 
 	get_current_screen()->add_help_tab( array(
-			'id'      => 'set-header-image-xili',
+			'id'		=> 'set-header-image-xili',
 			/* translators: added in child functions by xili */
-			'title'   => __('Multilingual Header Image in 2014-xili', 'twentyfourteen'),
-			'content' =>
+			'title'		=> __('Multilingual Header Image in 2014-xili', 'twentyfourteen'),
+			'content'	=>
 			/* translators: added in child functions by xili */
 				'<p>' . __( 'You can set a custom image header for your site according each current language. When the language changes, the header image will change. The default header image is assigned to unknown unaffected language.', 'twentyfourteen' ) . '</p>' .
 			/* translators: added in child functions by xili */
-				'<p>' . sprintf( __( 'The images will be assigned to the language in the %1$sXili-Options%2$s  Appearance settings page.', 'twentyfourteen'),'<a href="'.$header_setting_url.'">' ,'</a>' ). '</p>'
+				'<p>' . sprintf( __( 'The images will be assigned to the language in the %1$sXili-Options%2$s Appearance settings page.', 'twentyfourteen'),'<a href="'.$header_setting_url.'">' ,'</a>' ). '</p>'
 		) );
 
 }
@@ -314,7 +315,7 @@ function twentyfourteen_xili_header_image () {
 							break ;
 						}
 					}
-			 }
+			}
 	?>
 
 	<div id="site-header">
@@ -405,7 +406,7 @@ function my_xiliml_propagate_post_columns($from_post_column, $key, $from_lang_sl
 		case 'post_content':
 			$from_lang = translate( xili_get_language_field ( 'full name', $from_lang_slug ), 'twentyfourteen' );
 			$to_lang = translate( xili_get_language_field ( 'full name', $to_lang_slug ), 'twentyfourteen' );
-			/* translators: added in child function by xili */
+			/* translators: added in child functions by xili */
 			$to_post_column = '<p>'. sprintf (__('The content in %1$s below must be translated in %2$s !', 'twentyfourteen'), $from_lang, $to_lang ). '</p>' . $from_post_column;
 			break;
 
@@ -444,7 +445,7 @@ function is_xili_adjacent_filterable() {
 
 
 function twentyfourteen_xili_credits () {
-	/* translators: added in child function by xili */
+	/* translators: added in child functions by xili */
 	printf( __("Multilingual child theme of Twenty Fourteen by %s", 'twentyfourteen' ),"<a href=\"http://dev.xiligroup.com\">dev.xiligroup</a> - " );
 }
 
@@ -452,5 +453,18 @@ add_action ('twentyfourteen_credits', 'twentyfourteen_xili_credits');
 
 /* comment filter to unable link manager */
 add_filter( 'pre_option_link_manager_enabled', '__return_true' );
+
+//add_filter( 'pre_get_posts', 'my_get_posts' ); - test purposes
+
+function my_get_posts( $query ) {
+//error_log ('filter pre_get');
+	if ( is_home() && $query->is_main_query() )
+		$query->set( 'post_type', array( 'post', 'page', 'portfolio','testimonials' ) );
+
+	return $query;
+}
+
+
+
 
 ?>
