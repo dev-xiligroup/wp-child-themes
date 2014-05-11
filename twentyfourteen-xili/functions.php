@@ -7,7 +7,7 @@
 // 1.0.5 - 2014-03-04 - add searchform.php
 // 1.0.6 - 2014-03-18 - fixes I10n functionswith variables
 // 1.0.7 - 2014-04-28 - need XL 2.12 - WP 3.9
-// 1.1.0 - 2014-05-09 - need XL 2.12 - WP 3.9.1
+// 1.1.0 - 2014-05-11 - need XL 2.12 - WP 3.9.1
 
 define( 'TWENTYFOURTEEN_XILI_VER', '1.1.0'); // as parent style.css
 
@@ -106,7 +106,16 @@ function twentyfourteen_xilidev_setup () {
 			if ( file_exists( $xili_functionsfolder . '/multilingual-permalinks.php') && $xili_language->is_permalink && isset( $xili_theme_options['perma_ok'] ) && $xili_theme_options['perma_ok']) {
 				require_once ( $xili_functionsfolder . '/multilingual-permalinks.php' ); // require subscribing premium services
 			}
-			$msg = $xili_language_theme_options->child_installation_msg( $xl_required_version, $minimum_xl_version, $class_ok );
+			if ( $xl_required_version ) { // msg choice is inside class
+				$msg = $xili_language_theme_options->child_installation_msg( $xl_required_version, $minimum_xl_version, $class_ok );
+			} else {
+				$msg = '
+				<div class="error">'.
+					/* translators: added in child functions by xili */
+					'<p>' . sprintf ( __('The %1$s child theme requires xili_language version more recent than %2$s installed', 'twentyfourteen' ), get_option( 'current_theme', $minimum_xl_version ) ).'</p>
+				</div>';
+
+			}
 		} else {
 
 			$msg = '

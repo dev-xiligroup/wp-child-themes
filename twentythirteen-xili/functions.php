@@ -12,7 +12,7 @@
 // 1.1.4 - 2014-01-19 - fixes require_once of multilingual-functions.php (thanks to Herold) - add is_xili_adjacent_filterable (reserved future uses and in class embedding)
 // 1.1.5 - 2014-02-09 - Need XL 2.10.0+ - Adaptated for new class of permalinks
 // 1.1.6 - 2014-03-04 - Add searchform.php
-// 1.2.0 - 2014-05-10 - Update for parent 1.2 and WP 3.9.1 and XL 2.12
+// 1.2.0 - 2014-05-11 - Update for parent 1.2 and WP 3.9.1 and XL 2.12
 
 define( 'TWENTYTHIRTEEN_XILI_VER', '1.2.0'); // as parent style.css
 
@@ -112,7 +112,16 @@ function twentythirteen_xilidev_setup () {
 			if ( file_exists( $xili_functionsfolder . '/multilingual-permalinks.php') && $xili_language->is_permalink && isset( $xili_theme_options['perma_ok'] ) && $xili_theme_options['perma_ok']) {
 				require_once ( $xili_functionsfolder . '/multilingual-permalinks.php' ); // require subscribing premium services
 			}
-			$msg = $xili_language_theme_options->child_installation_msg( $xl_required_version, $minimum_xl_version, $class_ok );
+			if ( $xl_required_version ) { // msg choice is inside class
+				$msg = $xili_language_theme_options->child_installation_msg( $xl_required_version, $minimum_xl_version, $class_ok );
+			} else {
+				$msg = '
+				<div class="error">'.
+					/* translators: added in child functions by xili */
+					'<p>' . sprintf ( __('The %1$s child theme requires xili_language version more recent than %2$s installed', 'twentythirteen' ), get_option( 'current_theme', $minimum_xl_version ) ).'</p>
+				</div>';
+
+			}
 		} else {
 
 			$msg = '
