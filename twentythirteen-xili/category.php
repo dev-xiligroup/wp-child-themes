@@ -22,7 +22,7 @@ get_header(); ?>
 				<?php // translation
 			$category_description = trim( strip_tags( category_description() ) );
 			if ( ! empty( $category_description ) )
-				echo '<div class="archive-meta"><p>' . __( $category_description, 'twentythirteen' ) . '</p></div>';
+				echo '<div class="archive-meta"><p>' . translate( $category_description, 'twentythirteen' ) . '</p></div>';
 			?>
 			</header><!-- .archive-header -->
 

@@ -148,8 +148,6 @@ function twentyfourteen_xilidev_setup () {
 
 	// end errors...
 
-	// remove_filter( 'wp_title', 'twentyfourteen_wp_title', 10, 2 ); // see function and new filter at end fixed in WP 3.9
-
 }
 add_action( 'after_setup_theme', 'twentyfourteen_xilidev_setup', 11 );
 

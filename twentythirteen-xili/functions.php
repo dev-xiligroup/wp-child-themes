@@ -22,7 +22,7 @@ function twentythirteen_xilidev_setup () {
 
 	$theme_domain = 'twentythirteen';
 
-	load_theme_textdomain( $theme_domain, STYLESHEETPATH . '/langs' ); // now use .mo of child
+	load_theme_textdomain( $theme_domain, get_stylesheet_directory() . '/langs' ); // now use .mo of child
 
 	$xl_required_version = false;
 
@@ -119,29 +119,33 @@ function twentythirteen_xilidev_setup () {
 	if ( ! class_exists( 'xili_language' ) ) {
 
 		$msg = '
-		<div class="error">
-			<p>' . sprintf ( __('The %s child theme requires xili-language plugin installed and activated', 'twentythirteen' ), get_option( 'current_theme' ) ).'</p>
+		<div class="error">'.
+			/* translators: added in child functions by xili */
+			'<p>' . sprintf ( __('The %s child theme requires xili-language plugin installed and activated', 'twentythirteen' ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
 	} elseif ( $class_ok === false ) {
 
 		$msg = '
-		<div class="error">
-			<p>' . sprintf ( __('The %s child theme requires <em>xili_language_theme_options</em> class to set multilingual features.', 'twentythirteen' ), get_option( 'current_theme' ) ).'</p>
+		<div class="error">'.
+			/* translators: added in child functions by xili */
+			'<p>' . sprintf ( __('The %s child theme requires <em>xili_language_theme_options</em> class to set multilingual features.', 'twentythirteen' ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
 	} elseif ( $xl_required_version ) {
 
 		$msg = '
-		<div class="updated">
-			<p>' . sprintf ( __('The %s child theme was successfully activated with xili-language.', 'twentythirteen' ), get_option( 'current_theme' ) ).'</p>
+		<div class="updated">'.
+			/* translators: added in child functions by xili */
+			'<p>' . sprintf ( __('The %s child theme was successfully activated with xili-language.', 'twentythirteen' ), get_option( 'current_theme' ) ).'</p>
 		</div>';
 
 	} else {
 
 		$msg = '
-		<div class="error">
-			<p>' . sprintf ( __('The %1$s child theme requires xili-language version %2$s+', 'twentythirteen' ), get_option( 'current_theme' ), $minimum_xl_version ).'</p>
+		<div class="error">'.
+			/* translators: added in child functions by xili */
+			'<p>' . sprintf ( __('The %1$s child theme requires xili-language version %2$s+', 'twentythirteen' ), get_option( 'current_theme' ), $minimum_xl_version ).'</p>
 		</div>';
 	}
 	// after activation and in themes list
@@ -171,6 +175,7 @@ function twentythirteen_xilidev_setup_custom_header () {
 
 			'url'			=> '%2$s/images/headers/xili-2013.jpg',
 			'thumbnail_url' => '%2$s/images/headers/xili-2013-thumbnail.jpg',
+			/* translators: added in child functions by xili */
 			'description'	=> _x( '2013 by xili', 'header image description', 'twentythirteen' )
 		))
 	);
@@ -204,9 +209,12 @@ function twentythirteen_xili_header_help ( ) {
 
 	get_current_screen()->add_help_tab( array(
 			'id'		=> 'set-header-image-xili',
+			/* translators: added in child functions by xili */
 			'title'		=> __('Multilingual Header Image in 2013-xili', 'twentythirteen'),
 			'content'	=>
+				/* translators: added in child functions by xili */
 				'<p>' . __( 'You can set a custom image header for your site according each current language. When the language changes, the header image will change. The default header image is assigned to unknown unaffected language.', 'twentythirteen' ) . '</p>' .
+				/* translators: added in child functions by xili */
 				'<p>' . sprintf( __( 'The images will be assigned to the language in the %1$sXili-Options%2$s Appearance settings page.', 'twentythirteen'),'<a href="'.$header_setting_url.'">' ,'</a>' ). '</p>'
 		) );
 
@@ -363,13 +371,13 @@ function twentythirteen_entry_meta() {
 	if ( ! has_post_format( 'aside' ) && ! has_post_format( 'link' ) && 'post' == get_post_type() )
 		twentythirteen_entry_date();
 
-	// Translators: used between list items, there is a space after the comma.
+	// translators: used between list items, there is a space after the comma.
 	$categories_list = get_the_category_list( __( ', ', 'twentythirteen' ) );
 	if ( $categories_list ) {
 		echo '<span class="categories-links">' . $categories_list . '</span>';
 	}
 
-	// Translators: used between list items, there is a space after the comma.
+	// translators: used between list items, there is a space after the comma.
 	$tag_list = get_the_tag_list( '', __( ', ', 'twentythirteen' ) );
 	if ( $tag_list ) {
 		echo '<span class="tags-links">' . $tag_list . '</span>';
@@ -495,6 +503,7 @@ add_filter ('xiliml_propagate_post_columns', 'my_xiliml_propagate_post_columns',
 
 
 function twentythirteen_xili_credits () {
+	/* translators: added in child functions by xili */
 	printf( __("Multilingual child theme of Twenty Thirteen by %s", 'twentythirteen' ),"<a href=\"http://dev.xiligroup.com\">dev.xiligroup</a> - " );
 }
 
