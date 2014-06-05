@@ -21,7 +21,7 @@ Versioning follow the parent version.
 
 .site-title,
 .site-description {
- color:#fffff0; // same in functions.php
+ color:#fffff0; /* same in functions.php */
 }
 
 .xili-s-radio { font-size:80%; }
