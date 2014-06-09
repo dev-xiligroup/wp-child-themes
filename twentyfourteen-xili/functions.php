@@ -8,8 +8,9 @@
 // 1.0.6 - 2014-03-18 - fixes I10n functionswith variables
 // 1.0.7 - 2014-04-28 - need XL 2.12 - WP 3.9
 // 1.1.0 - 2014-05-11 - need XL 2.12 - WP 3.9.1
+// 1.1.1 - 2014-06-09 - need XL 2.13 - WP 3.9.1 - fixes if xl is inactive
 
-define( 'TWENTYFOURTEEN_XILI_VER', '1.1.0'); // as parent style.css
+define( 'TWENTYFOURTEEN_XILI_VER', '1.1.1'); // as parent style.css
 
 // main initialisation functions and version testing and message
 
@@ -278,13 +279,15 @@ function twentyfourteen_xili_header_image () {
 	// If no custom options for text are set, let's bail.
 	if ( empty( $header_image_url ) )
 		return;
-	$xili_theme_options = get_theme_xili_options() ;
+
 	// If we get this far, we have custom styles.
 
 		if ( ! empty( $header_image_url ) ) :
 			$header_image_width = get_custom_header()->width; // default values
 			$header_image_height = get_custom_header()->height;
-			if ( class_exists ( 'xili_language' ) && isset ( $xili_theme_options['xl_header'] ) && $xili_theme_options['xl_header'] ) {
+			if ( class_exists ( 'xili_language' ) ) {
+				$xili_theme_options = get_theme_xili_options() ;
+				if ( isset ( $xili_theme_options['xl_header'] ) && $xili_theme_options['xl_header'] ) {
 				global $xili_language, $xili_language_theme_options ;
 				// check if image exists in current language
 				// 2013-10-10 - Tiago suggestion
@@ -308,6 +311,7 @@ function twentyfourteen_xili_header_image () {
 							break ;
 						}
 					}
+				}
 			}
 	?>
 
@@ -375,14 +379,14 @@ function twentyfourteen_flags_style () {
 		$path = get_stylesheet_directory_uri();
 
 		$ulmenus = array();
+			echo "ul.nav-menu li.menu-separator {margin:0;}\n";
 		foreach ( $language_slugs_list as $slug ) {
-			echo "ul.nav-menu li.menu-separator { margin:0; }\n";
-			echo "ul.nav-menu li.lang-{$slug} a { background: transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 16px; margin:0;}\n";
+			echo "ul.nav-menu li.lang-{$slug} a {background: transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 16px; margin:0;}\n";
 			echo "ul.nav-menu li.lang-{$slug}:hover {background: #41a62a}\n"; // find menu bk
 			echo "ul.nav-menu li.lang-{$slug} a:hover {background: transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 17px !important;}\n";
 			$ulmenus[] = "ul.nav-menu li.lang-{$slug} a";
 		}
-			echo implode (', ', $ulmenus ) . " {text-indent:-9999px; width:24px; }\n";
+			echo implode (', ', $ulmenus ) . " {text-indent:-9999px; width:12px; }\n";
 		?>
 		</style>
 		<?php

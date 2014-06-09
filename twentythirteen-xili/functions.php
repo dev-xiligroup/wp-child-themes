@@ -13,8 +13,9 @@
 // 1.1.5 - 2014-02-09 - Need XL 2.10.0+ - Adaptated for new class of permalinks
 // 1.1.6 - 2014-03-04 - Add searchform.php
 // 1.2.0 - 2014-05-11 - Update for parent 1.2 and WP 3.9.1 and XL 2.12
+// 1.2.1 - 2014-06-09 - fixes if XL is inactive
 
-define( 'TWENTYTHIRTEEN_XILI_VER', '1.2.0'); // as parent style.css
+define( 'TWENTYTHIRTEEN_XILI_VER', '1.2.1'); // as parent style.css
 
 // main initialisation functions
 
@@ -222,13 +223,15 @@ function twentythirteen_xili_header_style () {
 	// If no custom options for text are set, let's bail.
 	if ( empty( $header_image_url ) && $text_color == get_theme_support( 'custom-header', 'default-text-color' ) )
 		return;
-	$xili_theme_options = get_theme_xili_options() ;
+
 	// If we get this far, we have custom styles.
 	?>
 	<style type="text/css" id="twentythirteen-header-css">
 	<?php
 		if ( ! empty( $header_image_url ) ) :
-			if ( class_exists ( 'xili_language' ) && isset ( $xili_theme_options['xl_header'] ) && $xili_theme_options['xl_header'] ) {
+			if ( class_exists ( 'xili_language' ) ) {
+				$xili_theme_options = get_theme_xili_options() ;
+				if ( isset ( $xili_theme_options['xl_header'] ) && $xili_theme_options['xl_header'] ) {
 				global $xili_language, $xili_language_theme_options ;
 				// check if image exists in current language
 				// 2013-10-10 - Tiago suggestion
@@ -248,6 +251,7 @@ function twentythirteen_xili_header_style () {
 							break ;
 						}
 					}
+				}
 			}
 	?>
 		.site-header {
