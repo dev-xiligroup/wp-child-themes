@@ -9,8 +9,9 @@
 // 1.0.7 - 2014-04-28 - need XL 2.12 - WP 3.9
 // 1.1.0 - 2014-05-11 - need XL 2.12 - WP 3.9.1
 // 1.1.1 - 2014-06-09 - need XL 2.13 - WP 3.9.1 - fixes if xl is inactive
+// 1.1.2 - 2014-07-24 - need XL 2.15 -
 
-define( 'TWENTYFOURTEEN_XILI_VER', '1.1.1'); // as parent style.css
+define( 'TWENTYFOURTEEN_XILI_VER', '1.1.2'); // as parent style.css
 
 // main initialisation functions and version testing and message
 
@@ -18,7 +19,7 @@ function twentyfourteen_xilidev_setup () {
 
 	$theme_domain = 'twentyfourteen';
 
-	$minimum_xl_version = '2.11.9';
+	$minimum_xl_version = '2.14.9';
 
 	load_theme_textdomain( $theme_domain, get_stylesheet_directory() . '/langs' ); // now use .mo of child
 
@@ -196,7 +197,7 @@ function special_head() {
 	$xili_theme_options = get_theme_xili_options() ;
 
 	if ( !isset( $xili_theme_options['no_flags'] ) || $xili_theme_options['no_flags'] != '1' ) {
-		twentyfourteen_flags_style(); // insert dynamic css
+		// twentyfourteen_flags_style(); // insert dynamic css - not used since xl 1.5
 	}
 }
 if ( class_exists('xili_language') )	// if temporary disabled
@@ -356,41 +357,53 @@ function twentyfourteen_xili_wp_title( $title, $sep ) {
 /**
  * dynamic style for flag depending current list and option no_flags
  *
- * @since 1.0.2 - add #access
+ * @since 1.0.2 - obsolete since xl 2.1.5 - only for example
  *
  */
 function twentyfourteen_flags_style () {
 
-	if ( class_exists('xili_language') ) {
+	if ( !class_exists('xili_language') ) { // test - not used since xl 1.5.0
+
 		global $xili_language ;
-		$language_xili_settings = get_option('xili_language_settings');
-		if ( !is_array( $language_xili_settings['langs_ids_array'] ) ) {
-			$xili_language->get_lang_slug_ids(); // update array when no lang_perma 110830 thanks to Pierre
-			update_option( 'xili_language_settings', $xili_language->xili_settings );
+	    $flag_options = get_option( $xili_language->flag_settings_name, $xili_language->get_default_xili_flag_options() );
+
+	    if ( $flag_options [ 'menu_with_flag'] == 'with-flag') {
 			$language_xili_settings = get_option('xili_language_settings');
+			if ( !is_array( $language_xili_settings['langs_ids_array'] ) ) {
+				$xili_language->get_lang_slug_ids(); // update array when no lang_perma 110830 thanks to Pierre
+				update_option( 'xili_language_settings', $xili_language->xili_settings );
+				$language_xili_settings = get_option('xili_language_settings');
+			}
+
+			$language_slugs_list = array_keys ( $language_xili_settings['langs_ids_array'] ) ;
+
+			?>
+			<style type="text/css">
+			<?php
+
+			$path = get_stylesheet_directory_uri();
+
+
+			$ulmenus = array();
+				//echo "ul.nav-menu li.menu-separator {margin:0;}\n";
+				echo 'ul.nav-menu li[class*="lang-"]:hover { background-color: #41a62a }' ."\n";
+				echo 'ul.nav-menu li[class*="lang-"] a {text-indent:-9999px; width:10px; background:transparent no-repeat center 16px; margin:0; }' ."\n";
+				echo 'ul.nav-menu li[class*="lang-"] a:hover {background: no-repeat center 17px !important;}' ."\n";
+			foreach ( $language_slugs_list as $slug ) {
+				$url = do_shortcode( "[xili-flag lang={$slug}]" ) ;
+				//echo "ul.nav-menu li.lang-{$slug} a {background:transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 16px; margin:0;}\n";
+				echo "ul.nav-menu li.lang-{$slug} a { background-image: url('{$url}') }\n";
+				//echo "ul.nav-menu li.lang-{$slug}:hover {background: #41a62a}\n"; // find menu bk
+				//echo "ul.nav-menu li.lang-{$slug} a:hover {background: transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 17px !important;}\n";
+				echo "ul.nav-menu li.lang-{$slug} a:hover { background-image: url('{$url}') !important;}\n";
+				//$ulmenus[] = "ul.nav-menu li.lang-{$slug} a";
+			}
+
+				//echo implode (', ', $ulmenus ) . " {text-indent:-9999px; width:12px; }\n";
+			?>
+			</style>
+			<?php
 		}
-
-		$language_slugs_list = array_keys ( $language_xili_settings['langs_ids_array'] ) ;
-
-		?>
-		<style type="text/css">
-		<?php
-
-		$path = get_stylesheet_directory_uri();
-
-		$ulmenus = array();
-			echo "ul.nav-menu li.menu-separator {margin:0;}\n";
-		foreach ( $language_slugs_list as $slug ) {
-			echo "ul.nav-menu li.lang-{$slug} a {background: transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 16px; margin:0;}\n";
-			echo "ul.nav-menu li.lang-{$slug}:hover {background: #41a62a}\n"; // find menu bk
-			echo "ul.nav-menu li.lang-{$slug} a:hover {background: transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 17px !important;}\n";
-			$ulmenus[] = "ul.nav-menu li.lang-{$slug} a";
-		}
-			echo implode (', ', $ulmenus ) . " {text-indent:-9999px; width:12px; }\n";
-		?>
-		</style>
-		<?php
-
 	}
 }
 

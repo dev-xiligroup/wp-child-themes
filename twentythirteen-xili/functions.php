@@ -14,8 +14,9 @@
 // 1.1.6 - 2014-03-04 - Add searchform.php
 // 1.2.0 - 2014-05-11 - Update for parent 1.2 and WP 3.9.1 and XL 2.12
 // 1.2.1 - 2014-06-09 - fixes if XL is inactive
+// 1.2.2 - 2014-07-24 - ready for XL 2.15+
 
-define( 'TWENTYTHIRTEEN_XILI_VER', '1.2.1'); // as parent style.css
+define( 'TWENTYTHIRTEEN_XILI_VER', '1.2.2'); // as parent style.css
 
 // main initialisation functions
 
@@ -27,7 +28,7 @@ function twentythirteen_xilidev_setup () {
 
 	$xl_required_version = false;
 
-	$minimum_xl_version = '2.11.9';
+	$minimum_xl_version = '2.14.9';
 
 	if ( class_exists('xili_language') ) { // if temporary disabled
 
@@ -313,7 +314,7 @@ function special_head() {
 	$xili_theme_options = get_theme_xili_options() ;
 
 	if ( !isset( $xili_theme_options['no_flags'] ) || $xili_theme_options['no_flags'] != '1' ) {
-		twentythirteen_flags_style(); // insert dynamic css
+		//twentythirteen_flags_style(); // insert dynamic css - obsolete with xl 2.15
 	}
 }
 if ( class_exists('xili_language') )	// if temporary disabled
@@ -322,7 +323,9 @@ if ( class_exists('xili_language') )	// if temporary disabled
 /**
  * dynamic style for flag depending current list and option no_flags
  *
- * @since 1.0.2 - add #access
+ * @since 1.0.2
+ *
+ * obsolete with xl 2.15 and custom flags from media library
  *
  */
 function twentythirteen_flags_style () {
@@ -350,9 +353,10 @@ function twentythirteen_flags_style () {
 			echo "ul.nav-menu li.lang-{$slug} a { background: transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 16px; margin:0;}\n";
 			echo "ul.nav-menu li.lang-{$slug}:hover {background: #AD9065}\n"; // find menu bk
 			echo "ul.nav-menu li.lang-{$slug} a:hover {background: transparent url('{$path}/images/flags/{$slug}.png') no-repeat center 17px !important;}\n";
-			$ulmenus[] = "ul.nav-menu li.lang-{$slug} a";
+			//$ulmenus[] = "ul.nav-menu li.lang-{$slug} a";
 		}
-			echo implode (', ', $ulmenus ) . " {text-indent:-9999px; width:24px; }\n";
+			//echo implode (', ', $ulmenus ) . " {text-indent:-9999px; width:24px; }\n";
+			echo 'ul.nav-menu li[class*="lang-"] a {text-indent:-9999px; width:24px; }' ."\n";
 		?>
 		</style>
 		<?php
