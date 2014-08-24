@@ -8,13 +8,13 @@ This folder contains sources of 2 multilingual child themes of bundled (embedded
 
 The twentyfourteen-xili (v. 1.1.2) is visible at http://2014.extend.xiligroup.org
 
-The twentythirteen-xili (v. 1.2.2) is visible at http://2013.extend.xiligroup.org
+The twentythirteen-xili (v. 1.2.3) is visible at http://2013.extend.xiligroup.org
 
 *Prerequisites* : 
 
-WordPress 3.9.1 and updated twentyfourteen and twentythirteen
+WordPress 3.9.2 and updated twentyfourteen and twentythirteen
 
-xili-language version 2.15.0 (with new theme-multilingual-classes and custom flags in media library)
+xili-language version 2.15.1 (with new theme-multilingual-classes and custom flags in media library)
 
 xili-language plugin must be activated.
 
@@ -26,4 +26,4 @@ After installation or updating, it is fully recommanded to refresh permalinks.
 
 Before updating don't forgot to keep a backup of the languages files (.mo)
 
-2014-07-24
+2014-08-24

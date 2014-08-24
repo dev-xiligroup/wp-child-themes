@@ -15,8 +15,9 @@
 // 1.2.0 - 2014-05-11 - Update for parent 1.2 and WP 3.9.1 and XL 2.12
 // 1.2.1 - 2014-06-09 - fixes if XL is inactive
 // 1.2.2 - 2014-07-24 - ready for XL 2.15+
+// 1.2.3 - 2014-08-24 - ready for XL 2.15.1+
 
-define( 'TWENTYTHIRTEEN_XILI_VER', '1.2.2'); // as parent style.css
+define( 'TWENTYTHIRTEEN_XILI_VER', '1.2.3'); // as parent style.css
 
 // main initialisation functions
 
@@ -153,6 +154,26 @@ function twentythirteen_xilidev_setup () {
 }
 add_action( 'after_setup_theme', 'twentythirteen_xilidev_setup', 11 ); // after parent functions
 
+// since XL 2.15.1
+function twentythirteen_bundled_themes_support_flags () {
+	$listlanguages = array(
+				'ar_ar','ar_ma', 'ar_xx', 'cn_cn',
+				'de_de', 'en_us', 'es_es', 'fr_be', 'fr_ca', 'fr_fr',
+				'it_it', 'ja_ja', 'ja', 'km_kh', 'pt_pt', 'ru_ru', 'zh_cn') ;
+
+	remove_theme_support ( 'custom_xili_flag');
+	$args = array();
+	foreach ( $listlanguages as $one_language ) {
+				$args[$one_language] = array(
+						'path' => '%2$s/images/flags/'.$one_language.'.png',
+						'height'				=> 16,
+						'width'					=> 11
+					);
+			}
+	add_theme_support ( 'custom_xili_flag', $args );
+}
+
+add_action( 'after_setup_theme', 'twentythirteen_bundled_themes_support_flags', 12 ); // after plugin functions - called after
 
 function xili_customize_js_footer () {
 
