@@ -3,6 +3,16 @@ wp-child-themes
 
 Child multilingual themes for WordPress embedded themes
 
+---------
+
+IMPORTANT: since 2014-11-30, the two child themes are in a separate repository :
+
+twentyfourteen-xili here: https://github.com/dev-xiligroup/twentyfourteen-xili
+
+twentythirteen-xili there: https://github.com/dev-xiligroup/twentythirteen-xili
+
+---------
+
 
 This folder contains sources of 2 multilingual child themes of bundled (embedded) themes of WordPress install.
 
